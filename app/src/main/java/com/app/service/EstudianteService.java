@@ -32,14 +32,42 @@ public class EstudianteService {
   @Autowired
   private final ModelMapper modelMapper;
 
-  public Estudiante crearEstudiante(requestEstudianteDTO request) {
+  public responseEstudianteDTO crearEstudiante(requestEstudianteDTO request) {
     Estudiante estudiante = modelMapper.map(request, Estudiante.class);
-    return estudianteRepository.save(estudiante);
+    Estudiante nuevoEstudiante = estudianteRepository.save(estudiante);
+    responseEstudianteDTO response = modelMapper.map(
+      nuevoEstudiante,
+      responseEstudianteDTO.class
+    );
+    return response;
   }
 
   public ArrayList<responseEstudianteDTO> findAll() {
     ArrayList<responseEstudianteDTO> responseEstudianteDTO = new ArrayList<>();
-    List<Estudiante> estudiantes = estudianteRepository.findAll();
+    List<Estudiante> estudiantes = estudianteRepository.findAllOrderByName();
+
+    for (Estudiante estudiante : estudiantes) {
+      responseEstudianteDTO response = modelMapper.map(
+        estudiante,
+        responseEstudianteDTO.class
+      );
+      responseEstudianteDTO.add(response);
+    }
+    return responseEstudianteDTO;
+  }
+
+  public responseEstudianteDTO findByLu(int lu) {
+    Estudiante estudiante = estudianteRepository.findByLu(lu);
+    responseEstudianteDTO response = modelMapper.map(
+      estudiante,
+      responseEstudianteDTO.class
+    );
+    return response;
+  }
+
+  public ArrayList<responseEstudianteDTO> findByGender(String genero) {
+    ArrayList<responseEstudianteDTO> responseEstudianteDTO = new ArrayList<>();
+    List<Estudiante> estudiantes = estudianteRepository.findByGender(genero);
 
     for (Estudiante estudiante : estudiantes) {
       responseEstudianteDTO response = modelMapper.map(
