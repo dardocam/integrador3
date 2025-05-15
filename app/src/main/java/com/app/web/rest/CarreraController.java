@@ -18,7 +18,11 @@ public class CarreraController {
 
   @GetMapping("/con-inscriptos")
   public ResponseEntity<List<responseCarreraConInscriptosDTO>> listarCarrerasConInscriptos() {
-    List<responseCarreraConInscriptosDTO> resultados = carreraService.obtenerCarrerasConInscriptos();
-    return ResponseEntity.ok(resultados);
+    try {
+      List<responseCarreraConInscriptosDTO> resultados = carreraService.obtenerCarrerasConInscriptos();
+      return ResponseEntity.ok(resultados);
+    } catch (Exception e) {
+      return ResponseEntity.status(500).build();
+    }
   }
 }

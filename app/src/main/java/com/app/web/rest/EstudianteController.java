@@ -6,6 +6,7 @@ import com.app.service.dto.estudiante.responseEstudianteDTO;
 import jakarta.validation.Valid;
 import java.util.ArrayList;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -32,21 +33,31 @@ public class EstudianteController {
   }
 
   @GetMapping("/findByGender/{genero}")
-  public ArrayList<responseEstudianteDTO> findByGender(
-    @PathVariable String genero
-  ) {
-    return estudianteService.findByGender(genero);
+  public ResponseEntity<?> findByGender(@PathVariable String genero) {
+    try {
+      return ResponseEntity
+        .status(HttpStatus.OK)
+        .body(estudianteService.findByGender(genero));
+    } catch (Exception e) {
+      return ResponseEntity.badRequest().body(null);
+    }
   }
 
   @PostMapping("/alta")
   public ResponseEntity<responseEstudianteDTO> altaEstudiante(
     @RequestBody @Valid requestEstudianteDTO request
   ) {
-    responseEstudianteDTO nuevoEstudiante = estudianteService.crearEstudiante(
-      request
-    );
+    // responseEstudianteDTO nuevoEstudiante = estudianteService.crearEstudiante(
+    //   request
+    // );
+    // return ResponseEntity.accepted().body(nuevoEstudiante);
 
-    // final var result = this.clienteService.save( request );
-    return ResponseEntity.accepted().body(nuevoEstudiante);
+    try {
+      return ResponseEntity
+        .status(HttpStatus.CREATED)
+        .body(estudianteService.crearEstudiante(request));
+    } catch (Exception e) {
+      return ResponseEntity.badRequest().body(null);
+    }
   }
 }

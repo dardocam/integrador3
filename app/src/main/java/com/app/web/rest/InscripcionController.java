@@ -32,8 +32,6 @@ public class InscripcionController {
     responseInscripcionDTO nuevoEstudiante = inscripcionService.inscribirEstudianteCarrera(
       request
     );
-
-    // final var result = this.clienteService.save( request );
     return ResponseEntity.accepted().body(nuevoEstudiante);
   }
 }
