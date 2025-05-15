@@ -1,11 +1,7 @@
 package com.app.web.rest;
 
-import com.app.service.EstudianteService;
-import com.app.service.dto.estudiante.requestEstudianteDTO;
-import com.app.service.dto.estudiante.responseEstudianteDTO;
-import jakarta.validation.Valid;
-import java.util.ArrayList;
-import lombok.RequiredArgsConstructor;
+import java.util.List;
+
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -15,6 +11,13 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.app.service.EstudianteService;
+import com.app.service.dto.estudiante.requestEstudianteDTO;
+import com.app.service.dto.estudiante.responseEstudianteDTO;
+
+import jakarta.validation.Valid;
+import lombok.RequiredArgsConstructor;
+
 @RestController
 @RequestMapping("/api/estudiante")
 @RequiredArgsConstructor
@@ -23,17 +26,31 @@ public class EstudianteController {
   private final EstudianteService estudianteService;
 
   @GetMapping("")
-  public ArrayList<responseEstudianteDTO> findAll() {
-    return estudianteService.findAll();
+  public ResponseEntity<List<responseEstudianteDTO>> findAll() {
+    try {
+      return ResponseEntity
+        .status(HttpStatus.OK)
+        .body(estudianteService.findAll());
+    } catch (Exception e) {
+      return ResponseEntity.badRequest().body(null);
+    }
   }
 
   @GetMapping("/findByLu/{lu}")
-  public responseEstudianteDTO findById(@PathVariable int lu) {
-    return estudianteService.findByLu(lu);
+  public ResponseEntity<responseEstudianteDTO> findById(@PathVariable int lu) {
+    try {
+      return ResponseEntity
+        .status(HttpStatus.OK)
+        .body(estudianteService.findByLu(lu));
+    } catch (Exception e) {
+      return ResponseEntity.badRequest().body(null);
+    }
   }
 
   @GetMapping("/findByGender/{genero}")
-  public ResponseEntity<?> findByGender(@PathVariable String genero) {
+  public ResponseEntity<List<responseEstudianteDTO>> findByGender(
+    @PathVariable String genero
+  ) {
     try {
       return ResponseEntity
         .status(HttpStatus.OK)
@@ -47,11 +64,6 @@ public class EstudianteController {
   public ResponseEntity<responseEstudianteDTO> altaEstudiante(
     @RequestBody @Valid requestEstudianteDTO request
   ) {
-    // responseEstudianteDTO nuevoEstudiante = estudianteService.crearEstudiante(
-    //   request
-    // );
-    // return ResponseEntity.accepted().body(nuevoEstudiante);
-
     try {
       return ResponseEntity
         .status(HttpStatus.CREATED)

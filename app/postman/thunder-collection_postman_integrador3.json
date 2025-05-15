@@ -1,0 +1,124 @@
+{
+    "info": {
+        "_postman_id": "a1c6b72d-6966-445e-8615-45728f4fef8c",
+        "name": "integrador3",
+        "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+        "description": ""
+    },
+    "item": [
+        {
+            "name": "altaEstudiante",
+            "request": {
+                "method": "POST",
+                "url": {
+                    "raw": "http://localhost:8080/api/estudiante/alta",
+                    "path": [
+                        "api",
+                        "estudiante",
+                        "alta"
+                    ],
+                    "protocol": "http",
+                    "host": [
+                        "localhost"
+                    ],
+                    "port": "8080"
+                },
+                "body": {
+                    "mode": "raw",
+                    "options": {
+                        "raw": {
+                            "language": "json"
+                        }
+                    },
+                    "raw": "    {\n      \"id_estudiante\": 26796903,\n      \"nombre\": \"Dardo\",\n      \"apellido\": \"Camaño\",\n      \"edad\": 46,\n      \"genero\": \"Male\",\n      \"ciudad\": \"Necochea\",\n      \"libreta\": 1111\n    }"
+                }
+            }
+        },
+        {
+            "name": "matricularEstudiante",
+            "request": {
+                "method": "POST",
+                "url": {
+                    "raw": "http://localhost:8080/api/inscripcion/alta",
+                    "path": [
+                        "api",
+                        "inscripcion",
+                        "alta"
+                    ],
+                    "protocol": "http",
+                    "host": [
+                        "localhost"
+                    ],
+                    "port": "8080"
+                },
+                "body": {
+                    "mode": "raw",
+                    "options": {
+                        "raw": {
+                            "language": "json"
+                        }
+                    },
+                    "raw": "    {\n      \"id_estudiante\": 26796903,\n      \"id_carrera\": 10,\n      \"antiguedad\": 0,\n      \"graduacion\": 0,\n      \"inscripcion\": 2025\n    }"
+                }
+            }
+        },
+        {
+            "name": "listarEstudiantesPorNombre",
+            "request": {
+                "method": "GET",
+                "url": {
+                    "raw": "http://localhost:8080/api/estudiante",
+                    "path": [
+                        "api",
+                        "estudiante"
+                    ],
+                    "protocol": "http",
+                    "host": [
+                        "localhost"
+                    ],
+                    "port": "8080"
+                }
+            }
+        },
+        {
+            "name": "buscarEstudiantePorNumeroDeLibreta",
+            "request": {
+                "method": "GET",
+                "url": {
+                    "raw": "http://localhost:8080/api/estudiante/findByLu/1111",
+                    "path": [
+                        "api",
+                        "estudiante",
+                        "findByLu",
+                        "1111"
+                    ],
+                    "protocol": "http",
+                    "host": [
+                        "localhost"
+                    ],
+                    "port": "8080"
+                }
+            }
+        },
+        {
+            "name": "buscarEstudiantesPorGenero",
+            "request": {
+                "method": "GET",
+                "url": {
+                    "raw": "http://localhost:8080/api/estudiante/findByGender/Male",
+                    "path": [
+                        "api",
+                        "estudiante",
+                        "findByGender",
+                        "Male"
+                    ],
+                    "protocol": "http",
+                    "host": [
+                        "localhost"
+                    ],
+                    "port": "8080"
+                }
+            }
+        }
+    ]
+}

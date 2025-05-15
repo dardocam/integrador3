@@ -74,20 +74,6 @@ Se utilizó para mapear @Entity con DTO
         </dependency>
 
 
-Modelo Estudiante JSON
-
-
-    {
-      "id_estudiante": 26796903,
-      "nombre": "Dardo",
-      "apellido": "Camaño",
-      "edad": 46,
-      "genero": "Male",
-      "ciudad": "Necochea",
-      "libreta": 060798
-    }
-
-
 ---
 
 

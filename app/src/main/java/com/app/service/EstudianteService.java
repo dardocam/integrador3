@@ -1,15 +1,18 @@
 package com.app.service;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import org.modelmapper.ModelMapper;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
 import com.app.domain.Estudiante;
 import com.app.repository.EstudianteRepository;
 import com.app.service.dto.estudiante.requestEstudianteDTO;
 import com.app.service.dto.estudiante.responseEstudianteDTO;
-import java.util.ArrayList;
-import java.util.List;
+
 import lombok.RequiredArgsConstructor;
-import org.modelmapper.ModelMapper;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
 
 @Service
 @RequiredArgsConstructor
@@ -65,7 +68,7 @@ public class EstudianteService {
     return response;
   }
 
-  public ArrayList<responseEstudianteDTO> findByGender(String genero) {
+  public List<responseEstudianteDTO> findByGender(String genero) {
     ArrayList<responseEstudianteDTO> responseEstudianteDTO = new ArrayList<>();
     List<Estudiante> estudiantes = estudianteRepository.findByGender(genero);
 
