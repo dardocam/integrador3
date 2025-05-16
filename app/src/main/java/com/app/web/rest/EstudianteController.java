@@ -1,7 +1,12 @@
 package com.app.web.rest;
 
+import com.app.service.EstudianteService;
+import com.app.service.dto.estudiante.requestEstudianteDTO;
+import com.app.service.dto.estudiante.responseEstudianteCarreraDTO;
+import com.app.service.dto.estudiante.responseEstudianteDTO;
+import jakarta.validation.Valid;
 import java.util.List;
-
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -10,13 +15,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
-import com.app.service.EstudianteService;
-import com.app.service.dto.estudiante.requestEstudianteDTO;
-import com.app.service.dto.estudiante.responseEstudianteDTO;
-
-import jakarta.validation.Valid;
-import lombok.RequiredArgsConstructor;
 
 @RestController
 @RequestMapping("/api/estudiante")
@@ -55,6 +53,20 @@ public class EstudianteController {
       return ResponseEntity
         .status(HttpStatus.OK)
         .body(estudianteService.findByGender(genero));
+    } catch (Exception e) {
+      return ResponseEntity.badRequest().body(null);
+    }
+  }
+
+  @GetMapping("/findByCarreraPorCiudad/{carrera}/{ciudad}")
+  public ResponseEntity<List<responseEstudianteCarreraDTO>> findByCarreraPorCiudad(
+    @PathVariable String carrera,
+    @PathVariable String ciudad
+  ) {
+    try {
+      return ResponseEntity
+        .status(HttpStatus.OK)
+        .body(estudianteService.findByCarreraPorCiudad(carrera, ciudad));
     } catch (Exception e) {
       return ResponseEntity.badRequest().body(null);
     }

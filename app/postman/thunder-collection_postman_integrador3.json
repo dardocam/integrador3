@@ -1,6 +1,6 @@
 {
     "info": {
-        "_postman_id": "a1c6b72d-6966-445e-8615-45728f4fef8c",
+        "_postman_id": "9936c045-c323-49a9-8918-62c37add70d0",
         "name": "integrador3",
         "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
         "description": ""
@@ -58,7 +58,7 @@
                             "language": "json"
                         }
                     },
-                    "raw": "    {\n      \"id_estudiante\": 26796903,\n      \"id_carrera\": 10,\n      \"antiguedad\": 0,\n      \"graduacion\": 0,\n      \"inscripcion\": 2025\n    }"
+                    "raw": "    {\n      \"id_estudiante\": 26796903,\n      \"id_carrera\": 1,\n      \"antiguedad\": 0,\n      \"graduacion\": 0,\n      \"inscripcion\": 2025\n    }"
                 }
             }
         },
@@ -111,6 +111,46 @@
                         "estudiante",
                         "findByGender",
                         "Male"
+                    ],
+                    "protocol": "http",
+                    "host": [
+                        "localhost"
+                    ],
+                    "port": "8080"
+                }
+            }
+        },
+        {
+            "name": "listarCarrerasConInscriptosPorCantidad",
+            "request": {
+                "method": "GET",
+                "url": {
+                    "raw": "http://localhost:8080/api/carrera/con-inscriptos",
+                    "path": [
+                        "api",
+                        "carrera",
+                        "con-inscriptos"
+                    ],
+                    "protocol": "http",
+                    "host": [
+                        "localhost"
+                    ],
+                    "port": "8080"
+                }
+            }
+        },
+        {
+            "name": "buscarEstudiantesPorCarreraPorCiudad",
+            "request": {
+                "method": "GET",
+                "url": {
+                    "raw": "http://localhost:8080/api/estudiante/findByCarreraPorCiudad/TUDAI/Necochea",
+                    "path": [
+                        "api",
+                        "estudiante",
+                        "findByCarreraPorCiudad",
+                        "TUDAI",
+                        "Necochea"
                     ],
                     "protocol": "http",
                     "host": [

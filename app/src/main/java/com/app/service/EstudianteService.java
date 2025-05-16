@@ -1,18 +1,16 @@
 package com.app.service;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import org.modelmapper.ModelMapper;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-
 import com.app.domain.Estudiante;
 import com.app.repository.EstudianteRepository;
 import com.app.service.dto.estudiante.requestEstudianteDTO;
+import com.app.service.dto.estudiante.responseEstudianteCarreraDTO;
 import com.app.service.dto.estudiante.responseEstudianteDTO;
-
+import java.util.ArrayList;
+import java.util.List;
 import lombok.RequiredArgsConstructor;
+import org.modelmapper.ModelMapper;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 @Service
 @RequiredArgsConstructor
@@ -80,5 +78,17 @@ public class EstudianteService {
       responseEstudianteDTO.add(response);
     }
     return responseEstudianteDTO;
+  }
+
+  public List<responseEstudianteCarreraDTO> findByCarreraPorCiudad(
+    String carrera,
+    String ciudad
+  ) {
+    List<responseEstudianteCarreraDTO> estudiantes = estudianteRepository.findByCarreraPorCiudad(
+      carrera,
+      ciudad
+    );
+
+    return estudiantes;
   }
 }
