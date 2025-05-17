@@ -13,7 +13,7 @@ Dardo Camaño
 **Curso/Asignatura:**  
 Arquitectura Web
 
-**Fecha Last Update:**  
+**Fecha:**  
 16/05/2025
 
 ---
