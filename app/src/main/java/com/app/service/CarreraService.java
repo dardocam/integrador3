@@ -4,6 +4,7 @@ import com.app.domain.Carrera;
 import com.app.repository.CarreraRepository;
 import com.app.service.dto.carrera.responseCarreraConInscriptosDTO;
 import com.app.service.dto.carrera.responseCarreraDTO;
+import com.app.service.dto.carrera.responseCarreraReporteDTO;
 import java.util.ArrayList;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
@@ -21,8 +22,8 @@ public class CarreraService {
   @Autowired
   private final ModelMapper modelMapper;
 
-  public ArrayList<responseCarreraDTO> findAll() {
-    ArrayList<responseCarreraDTO> responseCarreraDTO = new ArrayList<>();
+  public List<responseCarreraDTO> findAll() {
+    List<responseCarreraDTO> responseCarreraDTO = new ArrayList<>();
     List<Carrera> carreras = carreraRepository.findAll();
     for (Carrera carrera : carreras) {
       responseCarreraDTO response = modelMapper.map(
@@ -36,5 +37,9 @@ public class CarreraService {
 
   public List<responseCarreraConInscriptosDTO> obtenerCarrerasConInscriptos() {
     return carreraRepository.findCarrerasConCantidadInscriptos();
+  }
+
+  public List<responseCarreraReporteDTO> reporteCarreras() {
+    return carreraRepository.reporteCarreras();
   }
 }

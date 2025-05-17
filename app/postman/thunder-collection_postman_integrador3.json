@@ -1,6 +1,6 @@
 {
     "info": {
-        "_postman_id": "9936c045-c323-49a9-8918-62c37add70d0",
+        "_postman_id": "9c9b2082-b01a-4713-9441-61f690934c55",
         "name": "integrador3",
         "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
         "description": ""
@@ -151,6 +151,25 @@
                         "findByCarreraPorCiudad",
                         "TUDAI",
                         "Necochea"
+                    ],
+                    "protocol": "http",
+                    "host": [
+                        "localhost"
+                    ],
+                    "port": "8080"
+                }
+            }
+        },
+        {
+            "name": "reporteCarreras",
+            "request": {
+                "method": "GET",
+                "url": {
+                    "raw": "http://localhost:8080/api/carrera/reporte",
+                    "path": [
+                        "api",
+                        "carrera",
+                        "reporte"
                     ],
                     "protocol": "http",
                     "host": [
