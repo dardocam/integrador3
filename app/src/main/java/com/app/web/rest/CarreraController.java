@@ -9,6 +9,12 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+/**
+ * @class CarreraController
+ * @author Dardo Camaño
+ * @date 16/05/2025
+ * @brief Controlador REST para manejar las operaciones relacionadas con las carreras.
+ */
 @RestController
 @RequestMapping("/api/carrera")
 @RequiredArgsConstructor
@@ -16,6 +22,11 @@ public class CarreraController {
 
   private final CarreraService carreraService;
 
+  /**
+   * @brief Endpoint para obtener una lista de carreras con la cantidad de inscriptos.
+   *
+   * @return ResponseEntity con la lista de carreras y su cantidad de inscriptos.
+   */
   @GetMapping("/con-inscriptos")
   public ResponseEntity<List<responseCarreraConInscriptosDTO>> listarCarrerasConInscriptos() {
     try {
